@@ -7,6 +7,7 @@ import './../style.css';
 import { MultiSelect } from './Dropdowns';
 import FilterSort from 'icons/FilterSort';
 import FilterStatus from './FilterStatus';
+import ChartBox from './ChartBox';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -118,11 +119,44 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
             <FilterStatus />
           </div>
           <div style={{ width: '100%', background: '#1c1f21', overflow: 'scroll', margin: '10px' }}>
-            Results scrollable
+            <Grid numRows={2} itemHeight={400}>
+              <ChartBox />
+              <ChartBox />
+              <ChartBox />
+              <ChartBox />
+            </Grid>
           </div>
         </div>
       </div>
       <div style={{ width: '20%', background: 'black', height: '100%', borderRadius: '10px' }}></div>
+    </div>
+  );
+};
+
+const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${2}, 50%)`,
+        gridTemplateRows: `repeat(${numRows}, ${itemHeight}px)`,
+        gap: '10px',
+        width: '100%',
+        marginBottom: '10px',
+        pointerEvents: 'none',
+      }}
+    >
+      {children.map((child: any, index: number) => (
+        <div
+          key={index}
+          style={{
+            width: `100%`,
+            height: `${itemHeight}px`,
+          }}
+        >
+          {child}
+        </div>
+      ))}
     </div>
   );
 };
