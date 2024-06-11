@@ -1,0 +1,3 @@
+{
+  "extends": "./prisma-prismadlr-panel/.config/tsconfig.json"
+}
