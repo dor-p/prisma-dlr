@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
 import { css, cx } from '@emotion/css';
@@ -8,6 +8,7 @@ import { MultiSelect } from './Dropdowns';
 import FilterSort from 'icons/FilterSort';
 import FilterStatus from './FilterStatus';
 import ChartBox from './ChartBox';
+import SideBar from './SideBar/SideBar';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -28,11 +29,14 @@ const getStyles = () => {
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fieldConfig, id }) => {
   const theme = useTheme2();
   const styles = useStyles2(getStyles);
-
+  const [activeChart, setActiveChart] = useState<number>(0);
   // if (data.series.length === 0) {
   //   return <PanelDataErrorView fieldConfig={fieldConfig} panelId={id} data={data} needsStringField />;
   // }
 
+  const handleChartClick = (index: number) => {
+    setActiveChart(index);
+  };
   return (
     <div
       className={cx(
@@ -114,21 +118,34 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
           />
           <FilterSort />
         </div>
-        <div style={{ height: '100%', background: '#1c1f21', padding: '10px' }}>
+        <div style={{ height: '100%', background: '#1c1f21', padding: '10px', overflowY: 'hidden' }}>
           <div style={{ background: '#18191b', padding: '0px 10px' }}>
             <FilterStatus />
           </div>
-          <div style={{ width: '100%', background: '#1c1f21', overflow: 'scroll', margin: '10px' }}>
-            <Grid numRows={2} itemHeight={400}>
-              <ChartBox />
-              <ChartBox />
-              <ChartBox />
-              <ChartBox />
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              background: '#1c1f21',
+              margin: '10px',
+              pointerEvents: 'none',
+              overflowY: 'scroll',
+            }}
+          >
+            <Grid numRows={3} itemHeight={255}>
+              <ChartBox onClick={() => handleChartClick(0)} active={activeChart === 0} />
+              <ChartBox onClick={() => handleChartClick(1)} active={activeChart === 1} />
+              <ChartBox onClick={() => handleChartClick(2)} active={activeChart === 2} />
+              <ChartBox onClick={() => handleChartClick(3)} active={activeChart === 3} />
+              <ChartBox onClick={() => handleChartClick(4)} active={activeChart === 4} />
+              <ChartBox onClick={() => handleChartClick(5)} active={activeChart === 5} />
             </Grid>
           </div>
         </div>
       </div>
-      <div style={{ width: '20%', background: 'black', height: '100%', borderRadius: '10px' }}></div>
+      <div style={{ width: '20%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
+        <SideBar />
+      </div>
     </div>
   );
 };
@@ -141,7 +158,7 @@ const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
         gridTemplateColumns: `repeat(${2}, 50%)`,
         gridTemplateRows: `repeat(${numRows}, ${itemHeight}px)`,
         gap: '10px',
-        width: '100%',
+        width: '98%',
         marginBottom: '10px',
         pointerEvents: 'none',
       }}
@@ -152,6 +169,7 @@ const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
           style={{
             width: `100%`,
             height: `${itemHeight}px`,
+            pointerEvents: 'none',
           }}
         >
           {child}

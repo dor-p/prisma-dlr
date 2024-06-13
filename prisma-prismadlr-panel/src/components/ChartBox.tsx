@@ -1,39 +1,102 @@
 import React from 'react';
 import HalfPieChart from './HalfPieChart';
+import ChartIcon from 'icons/ChartIcon';
 
-const ChartBox: React.FC = () => {
+interface ChartBoxProps {
+  active: boolean;
+  onClick: () => void;
+}
+
+const ChartBox: React.FC<any> = ({ active, onClick }: ChartBoxProps) => {
   const data = [590, 110, 100]; // Example data
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#D4AF37', '#FF6347', '#1E90FF'];
 
   return (
-    <div
-      style={{
-        padding: '20px',
-        backgroundColor: '#333',
-        color: '#fff',
-        borderRadius: '10px',
-        width: '400px',
-        margin: 'auto',
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-        <span>Kfar Uriya - Sitria</span>
-        <span>N</span>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div>
-          <div>N</div>
-          <div>DV 220kv</div>
-          <div>11:30 (now)</div>
+    <>
+      <div
+        style={{
+          padding: '10px 15px',
+          backgroundColor: '#2b2e34',
+          color: '#fff',
+          borderRadius: '6px',
+          height: '100%',
+          border: active ? '2px solid #088eea' : '2px solid transparent',
+          pointerEvents: 'all',
+        }}
+        onClick={onClick}
+      >
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px', alignItems: 'center' }}>
+          <span style={{ fontSize: '16px', fontWeight: 600 }}>Kfar Uriya - Sitria</span>
+          <span style={{ borderRadius: '4px', padding: '6px', backgroundColor: '#204762', marginLeft: '20px' }}>N</span>
         </div>
-        <HalfPieChart data={data} labels={labels} colors={colors} />
-        <div>
-          <div>+3h</div>
-          <div style={{ backgroundColor: '#1E90FF', padding: '5px', borderRadius: '5px' }}>650A/95% 13:30</div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            background: '#222529',
+            padding: '10px',
+            height: '183px',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', fontSize: '12px' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                gap: '20px',
+              }}
+            >
+              <div>
+                <span style={{ fontWeight: 600 }}>N</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 600 }}>DV 220</span>kv
+              </div>
+            </div>
+            <div>11:30 (now)</div>
+          </div>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <HalfPieChart data={data} labels={labels} colors={colors} />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'end',
+              gap: '5px',
+              fontSize: '10px',
+              justifyContent: 'space-between',
+              flexDirection: 'column',
+            }}
+          >
+            <div style={{ display: 'flex', gap: '5px' }}>
+              <div style={{ fontWeight: 700, height: '25px', display: 'flex', alignItems: 'center' }}>+3h</div>
+              <div
+                style={{
+                  backgroundColor: '#0A73B5',
+                  padding: '3px 5px',
+                  borderRadius: '5px',
+                  gap: '15px',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <span style={{ fontSize: '13px' }}>
+                  650
+                  <span style={{ paddingTop: '3px', fontSize: '10px' }}>A/95%</span>
+                </span>
+                <span style={{ paddingTop: '3px' }}>13:30</span>
+              </div>
+            </div>
+            <ChartIcon />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

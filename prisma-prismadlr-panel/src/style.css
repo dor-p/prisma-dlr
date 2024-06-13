@@ -1,1 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap');
+
+.gauge-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.gauge-label {
+  position: absolute;
+  text-align: center;
+  color: #ffffff;
+}
+
+.info-card {
+  background-color: #323335;
+
+  border-radius: 8px;
+}
+
+.info-card h6 {
+  color: #00aaff;
+  margin-bottom: 8px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  background-color: #222529;
+  border-radius: 13px;
+}
+
+.info-row .info-item {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.info-row .info-title {
+  font-size: 15px;
+  color: #ffffff;
+}
+.info-row .info-subtitle {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 600;
+}
+.info-row .info-percentage {
+  font-size: 28px;
+  font-weight: 600;
+  color: #f45f4f;
+  height: 34px;
+}
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  color: #ffffff;
+}
+
+.sidebar-header-info {
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  gap: 8px;
+}
+
+.dlr-badge {
+  background-color: #0093ee;
+  color: #ffffff;
+  padding: 2px 6px;
+  font-weight: 600;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.grid-item {
+  padding: 16px;
+  border-radius: 13px;
+  background-color: #323335;
+}
