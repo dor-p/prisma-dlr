@@ -11,11 +11,11 @@ interface ChartBoxProps {
 const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#D4AF37', '#FF6347', '#1E90FF'];
-  const { device_name, thermal_current, thermal_current_lower, thermal_current_upper } = data;
+  const { device_name, thermal_current, thermal_current_lower, thermal_current_upper, line_current } = data;
   const pieChartData = [
-    parseFloat(thermal_current).toFixed(3),
-    parseFloat(thermal_current_lower).toFixed(3),
-    parseFloat(thermal_current_upper).toFixed(3),
+    parseFloat(thermal_current).toFixed(3) || 0,
+    parseFloat(thermal_current_lower).toFixed(3) || 0,
+    parseFloat(thermal_current_upper).toFixed(3) || 0,
   ];
   return (
     <>
@@ -65,7 +65,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
             <div>11:30 (now)</div>
           </div>
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <HalfPieChart data={pieChartData} labels={labels} colors={colors} />
+            <HalfPieChart data={pieChartData} line_load={line_current} labels={labels} colors={colors} />
           </div>
           <div
             style={{

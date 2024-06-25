@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartOptions } from 'cha
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HalfPieChart: React.FC = ({ data }: any) => {
+const HalfPieChart: React.FC = ({ data, line_load }: any) => {
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#BB9000', '#FF6666', '#3D4147'];
 
@@ -51,8 +51,8 @@ const HalfPieChart: React.FC = ({ data }: any) => {
         ctx.font = `${fontSize}em sans-serif`;
         ctx.textBaseline = 'middle';
 
-        const lineLoad = chart.data.datasets[0].data[0];
-        const lineLoadText = `${lineLoad}A/${((lineLoad / 600) * 100).toFixed(0)}%`;
+        const lineLoad = parseFloat(line_load).toFixed(0);
+        const lineLoadText = `${lineLoad}A/${((Number(lineLoad) / 600) * 100).toFixed(0)}%`;
         const lineLoadTextX = Math.round((width - ctx.measureText(lineLoadText).width) / 2);
         const lineLoadTextY = height / 1.2;
         ctx.fillStyle = '#BB9000';
