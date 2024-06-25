@@ -9,7 +9,7 @@ import ThermostatIcon from 'icons/ThermostatIcon';
 import RainIcon from 'icons/RainIcon';
 
 const SideBar = ({ activeDevice }: any) => {
-  const [
+  const {
     ambient_temperature,
     wind_speed,
     wind_direction,
@@ -18,7 +18,7 @@ const SideBar = ({ activeDevice }: any) => {
     solar_radiation_intensity,
     rain_intensity,
     span_number,
-  ] = activeDevice;
+  } = activeDevice;
   return (
     <div style={{ padding: '12px' }}>
       <Header />
