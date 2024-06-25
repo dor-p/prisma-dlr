@@ -180,7 +180,7 @@ const WeatherInfo = ({
           Wind Speed
         </div>
         <div className="info-subtitle" style={{ fontSize: '30px' }}>
-          {wind_speed} <span style={{ fontSize: '18px', fontWeight: 500 }}>m/s</span>
+          {parseFloat(wind_speed).toFixed(3)} <span style={{ fontSize: '18px', fontWeight: 500 }}>m/s</span>
         </div>
       </div>
       <div className="vertical-bar"></div>
