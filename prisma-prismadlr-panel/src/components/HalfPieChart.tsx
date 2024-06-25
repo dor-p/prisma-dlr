@@ -4,8 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartOptions } from 'cha
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HalfPieChart: React.FC = () => {
-  const data = [590, 10, 100];
+const HalfPieChart: React.FC = ({ data }: any) => {
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#BB9000', '#FF6666', '#3D4147'];
 

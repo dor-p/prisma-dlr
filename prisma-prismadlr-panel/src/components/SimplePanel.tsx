@@ -183,6 +183,7 @@ const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
         width: '98%',
         marginBottom: '10px',
         pointerEvents: 'none',
+        paddingBottom: '45px',
       }}
     >
       {children.map((child: any, index: number) => (
