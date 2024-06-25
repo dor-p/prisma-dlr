@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Header: React.FC = () => (
+const Header = ({ title }: any) => (
   <div className="sidebar-header">
-    <h5 style={{ fontWeight: 600, color: '#ffffff' }}>Triglav</h5>
+    <h5 style={{ fontWeight: 600, color: '#ffffff' }}>{title}</h5>
     <div className="sidebar-header-info">
       <span style={{ fontWeight: 600 }}>N1</span>
       <span style={{ fontWeight: 600 }}>

@@ -10,6 +10,7 @@ import RainIcon from 'icons/RainIcon';
 
 const SideBar = ({ activeDevice }: any) => {
   const {
+    device_name,
     ambient_temperature,
     wind_speed,
     wind_direction,
@@ -21,7 +22,7 @@ const SideBar = ({ activeDevice }: any) => {
   } = activeDevice;
   return (
     <div style={{ padding: '12px' }}>
-      <Header />
+      <Header title={device_name} />
       <div className="grid-container">
         <div className="grid-item">
           <InfoCard icon={<ConductorIcon />} title="Conductor" tag="Critical Rating" content={<ConductorInfo />} />
