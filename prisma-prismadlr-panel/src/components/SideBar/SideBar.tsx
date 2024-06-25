@@ -8,7 +8,17 @@ import WeatherIcon from 'icons/WeatherIcon';
 import ThermostatIcon from 'icons/ThermostatIcon';
 import RainIcon from 'icons/RainIcon';
 
-const SideBar = () => {
+const SideBar = ({ activeDevice }: any) => {
+  const [
+    ambient_temperature,
+    wind_speed,
+    wind_direction,
+    relative_humidity,
+    air_pressure,
+    solar_radiation_intensity,
+    rain_intensity,
+    span_number,
+  ] = activeDevice;
   return (
     <div style={{ padding: '12px' }}>
       <Header />
@@ -17,10 +27,24 @@ const SideBar = () => {
           <InfoCard icon={<ConductorIcon />} title="Conductor" tag="Critical Rating" content={<ConductorInfo />} />
         </div>
         <div className="grid-item">
-          <InfoCard icon={<LineIcon />} title="Line" content={<LineInfo />} />
+          <InfoCard icon={<LineIcon />} title="Line" content={<LineInfo span_number={span_number} />} />
         </div>
         <div className="grid-item">
-          <InfoCard icon={<WeatherIcon />} title="Weather" content={<WeatherInfo />} />
+          <InfoCard
+            icon={<WeatherIcon />}
+            title="Weather"
+            content={
+              <WeatherInfo
+                wind_speed={wind_speed}
+                wind_direction={wind_direction}
+                solar_radiation_intensity={solar_radiation_intensity}
+                relative_humidity={relative_humidity}
+                air_pressure={air_pressure}
+                ambient_temperature={ambient_temperature}
+                rain_intensity={rain_intensity}
+              />
+            }
+          />
         </div>
       </div>
     </div>
@@ -96,7 +120,7 @@ const ConductorInfo: React.FC = () => (
     </div>
   </div>
 );
-const LineInfo: React.FC = () => (
+const LineInfo = ({ span_number }: any) => (
   <div>
     <div className="info-row">
       <div className="info-item">
@@ -109,14 +133,23 @@ const LineInfo: React.FC = () => (
       <div className="info-item">
         <div className="info-title">Critical Span</div>
         <div className="info-subtitle" style={{ fontSize: '28px' }}>
-          <span style={{ fontSize: '14px' }}>#</span>1235
+          <span style={{ fontSize: '14px' }}>#</span>
+          {span_number}
         </div>
       </div>
     </div>
   </div>
 );
 
-const WeatherInfo: React.FC = () => (
+const WeatherInfo = ({
+  wind_speed,
+  wind_direction,
+  solar_radiation_intensity,
+  relative_humidity,
+  air_pressure,
+  ambient_temperature,
+  rain_intensity,
+}: any) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
     <div className="info-row">
       <div className="info-item">
@@ -124,7 +157,7 @@ const WeatherInfo: React.FC = () => (
           <RainIcon />
         </div>
         <div className="info-title" style={{ fontWeight: 600 }}>
-          2.5
+          {rain_intensity}
           <span style={{ color: '#C3C3C3', fontWeight: 400 }}> mm/h</span>
         </div>
       </div>
@@ -133,7 +166,7 @@ const WeatherInfo: React.FC = () => (
           className="info-subtitle"
           style={{ color: '#0093EE', fontSize: '30px', fontWeight: 700, lineHeight: '1.3' }}
         >
-          10°<span style={{ fontSize: '18px' }}>c</span>
+          {ambient_temperature}°<span style={{ fontSize: '18px' }}>c</span>
         </div>
         <div className="info-title" style={{ color: '#C3C3C3' }}>
           Feels like: 22°C
@@ -146,7 +179,7 @@ const WeatherInfo: React.FC = () => (
           Wind Speed
         </div>
         <div className="info-subtitle" style={{ fontSize: '30px' }}>
-          10 <span style={{ fontSize: '18px', fontWeight: 500 }}>m/s</span>
+          {wind_speed} <span style={{ fontSize: '18px', fontWeight: 500 }}>m/s</span>
         </div>
       </div>
       <div className="vertical-bar"></div>
@@ -155,7 +188,7 @@ const WeatherInfo: React.FC = () => (
           Wind Angle
         </div>
         <div className="info-subtitle" style={{ fontSize: '30px' }}>
-          100°
+          {wind_direction}°
         </div>
       </div>
     </div>
@@ -165,7 +198,7 @@ const WeatherInfo: React.FC = () => (
           Solar Radiation Intensity
         </div>
         <div className="info-subtitle" style={{ fontSize: '30px' }}>
-          1380 <span style={{ fontSize: '18px', fontWeight: 500 }}>W/m2</span>
+          {solar_radiation_intensity} <span style={{ fontSize: '18px', fontWeight: 500 }}>W/m2</span>
         </div>
       </div>
     </div>
@@ -175,7 +208,8 @@ const WeatherInfo: React.FC = () => (
           Humidity
         </div>
         <div className="info-subtitle" style={{ fontSize: '30px' }}>
-          10<span style={{ fontSize: '18px', fontWeight: 500 }}> %</span>
+          {relative_humidity}
+          <span style={{ fontSize: '18px', fontWeight: 500 }}> %</span>
         </div>
       </div>
       <div className="vertical-bar"></div>
@@ -184,7 +218,7 @@ const WeatherInfo: React.FC = () => (
           Air Pressure
         </div>
         <div className="info-subtitle" style={{ fontSize: '30px' }}>
-          1100
+          {air_pressure}
           <span style={{ fontSize: '18px', fontWeight: 500 }}> hPa</span>
         </div>
       </div>

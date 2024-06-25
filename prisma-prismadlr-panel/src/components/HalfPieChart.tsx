@@ -5,7 +5,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartOptions } from 'cha
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HalfPieChart: React.FC = ({ data, line_load }: any) => {
-  const labels = ['Line load', '600A', '700A DLR'];
+  const labels = ['Thermal Current', 'Thermal Current Lower Limit', 'Thermal Current Upper Limit'];
   const colors = ['#BB9000', '#FF6666', '#3D4147'];
 
   const chartData = {
