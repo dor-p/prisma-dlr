@@ -12,7 +12,11 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#D4AF37', '#FF6347', '#1E90FF'];
   const { device_name, thermal_current, thermal_current_lower, thermal_current_upper } = data;
-  const pieChartData = [thermal_current, thermal_current_lower, thermal_current_upper];
+  const pieChartData = [
+    parseFloat(thermal_current).toFixed(3),
+    parseFloat(thermal_current_lower).toFixed(3),
+    parseFloat(thermal_current_upper).toFixed(3),
+  ];
   return (
     <>
       <div
