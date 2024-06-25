@@ -159,7 +159,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
                   <ChartBox
                     data={deviceRow}
                     key={index}
-                    onClick={() => handleChartClick(0)}
+                    onClick={() => handleChartClick(index)}
                     active={activeChart === index}
                   />
                 );
@@ -168,9 +168,11 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
           </div>
         </div>
       </div>
-      <div style={{ width: '22%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
-        {/* <SideBar activeDevice={deviceData[activeChart]} /> */}
-      </div>
+      {deviceData[activeChart] && (
+        <div style={{ width: '22%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
+          <SideBar activeDevice={deviceData[activeChart]} />
+        </div>
+      )}
     </div>
   );
 };
