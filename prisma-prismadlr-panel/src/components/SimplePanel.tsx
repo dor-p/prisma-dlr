@@ -32,7 +32,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
   const styles = useStyles2(getStyles);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeChart, setActiveChart] = useState<number>(0);
-  const [deviceData, setDeviceData] = useState<any>(null);
+  const [deviceData, setDeviceData] = useState<any>([]);
   // if (data.series.length === 0) {
   //   return <PanelDataErrorView fieldConfig={fieldConfig} panelId={id} data={data} needsStringField />;
   // }
