@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
 import { css, cx } from '@emotion/css';
@@ -9,6 +9,7 @@ import FilterSort from 'icons/FilterSort';
 import FilterStatus from './FilterStatus';
 import ChartBox from './ChartBox';
 import SideBar from './SideBar/SideBar';
+import { getDevices } from 'lib/dashboard';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -29,14 +30,31 @@ const getStyles = () => {
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fieldConfig, id }) => {
   const theme = useTheme2();
   const styles = useStyles2(getStyles);
+  const [loading, setLoading] = useState<boolean>(false);
   const [activeChart, setActiveChart] = useState<number>(0);
+  const [deviceData, setDeviceData] = useState<any>(null);
   // if (data.series.length === 0) {
   //   return <PanelDataErrorView fieldConfig={fieldConfig} panelId={id} data={data} needsStringField />;
   // }
+  useEffect(() => {
+    const fetchDevices = async () => {
+      setLoading(true);
+      try {
+        const devices = await getDevices();
+        setDeviceData(devices);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDevices();
+  }, []);
 
   const handleChartClick = (index: number) => {
     setActiveChart(index);
   };
+
   return (
     <div
       className={cx(
@@ -50,7 +68,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
       {/* Container */}
       <div
         style={{
-          width: '80%',
+          width: '78%',
           background: 'black',
           height: '100%',
           borderRadius: '10px',
@@ -133,17 +151,21 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
             }}
           >
             <Grid numRows={3} itemHeight={255}>
-              <ChartBox onClick={() => handleChartClick(0)} active={activeChart === 0} />
-              <ChartBox onClick={() => handleChartClick(1)} active={activeChart === 1} />
-              <ChartBox onClick={() => handleChartClick(2)} active={activeChart === 2} />
-              <ChartBox onClick={() => handleChartClick(3)} active={activeChart === 3} />
-              <ChartBox onClick={() => handleChartClick(4)} active={activeChart === 4} />
-              <ChartBox onClick={() => handleChartClick(5)} active={activeChart === 5} />
+              {deviceData.map((deviceRow: any, index: number) => {
+                return (
+                  <ChartBox
+                    data={deviceRow}
+                    key={index}
+                    onClick={() => handleChartClick(0)}
+                    active={activeChart === index}
+                  />
+                );
+              })}
             </Grid>
           </div>
         </div>
       </div>
-      <div style={{ width: '20%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
+      <div style={{ width: '22%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
         <SideBar />
       </div>
     </div>

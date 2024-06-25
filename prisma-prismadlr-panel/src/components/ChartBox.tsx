@@ -3,15 +3,16 @@ import HalfPieChart from './HalfPieChart';
 import ChartIcon from 'icons/ChartIcon';
 
 interface ChartBoxProps {
+  data: any;
   active: boolean;
   onClick: () => void;
 }
 
-const ChartBox: React.FC<any> = ({ active, onClick }: ChartBoxProps) => {
-  const data = [590, 110, 100]; // Example data
+const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#D4AF37', '#FF6347', '#1E90FF'];
-
+  const { device_name, thermal_current, thermal_current_lower, thermal_current_upper } = data;
+  const pieChartData = [thermal_current, thermal_current_lower, thermal_current_upper];
   return (
     <>
       <div
@@ -27,7 +28,7 @@ const ChartBox: React.FC<any> = ({ active, onClick }: ChartBoxProps) => {
         onClick={onClick}
       >
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px', alignItems: 'center' }}>
-          <span style={{ fontSize: '16px', fontWeight: 600 }}>Kfar Uriya - Sitria</span>
+          <span style={{ fontSize: '16px', fontWeight: 600 }}>{device_name}</span>
           <span style={{ borderRadius: '4px', padding: '6px', backgroundColor: '#204762', marginLeft: '20px' }}>N</span>
         </div>
         <div
@@ -60,7 +61,7 @@ const ChartBox: React.FC<any> = ({ active, onClick }: ChartBoxProps) => {
             <div>11:30 (now)</div>
           </div>
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <HalfPieChart data={data} labels={labels} colors={colors} />
+            <HalfPieChart data={pieChartData} labels={labels} colors={colors} />
           </div>
           <div
             style={{

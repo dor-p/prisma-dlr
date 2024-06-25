@@ -61,7 +61,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 16px;
+  padding-bottom: 10px;
   color: #ffffff;
 }
 
@@ -70,6 +70,7 @@
   font-size: 12px;
   align-items: center;
   gap: 8px;
+  margin-right: 10px;
 }
 
 .dlr-badge {
@@ -91,4 +92,10 @@
   padding: 16px;
   border-radius: 13px;
   background-color: #323335;
+}
+
+.vertical-bar {
+  width: 4px;
+  background: #4d4d4e;
+  margin: 5px 0px 5px 0px;
 }
