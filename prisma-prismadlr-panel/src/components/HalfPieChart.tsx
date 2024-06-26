@@ -29,7 +29,7 @@ const CustomDoughnutChart = ({ data, line_load }: any) => {
     },
     cutout: '70%',
     layout: {
-      padding: { top: 80, right: 20, bottom: 20, left: 20 }, // Increased top padding for labels
+      padding: { top: 80, right: 20, bottom: 20, left: 20 },
     },
     responsive: true,
     maintainAspectRatio: false,
@@ -50,27 +50,31 @@ const CustomDoughnutChart = ({ data, line_load }: any) => {
         } = chart;
         ctx.save();
 
-        // Calculate total value for percentage calculation
         const totalValue = data.reduce((sum, value) => sum + value, 0);
-
-        // Draw labels with pointers
         let startAngle = Math.PI;
+
         chart.data.labels.forEach((label, index) => {
           const value = data[index];
           const sliceAngle = (value / totalValue) * Math.PI;
-          const angle = startAngle - sliceAngle / 2;
+          const midAngle = startAngle - sliceAngle / 2;
 
-          // Calculate the point on the arc
-          const radius = chart.getDatasetMeta(0).data[index].outerRadius;
+          const outerRadius = chart.getDatasetMeta(0).data[index].outerRadius;
+          const innerRadius = chart.getDatasetMeta(0).data[index].innerRadius;
           const centerX = chart.getDatasetMeta(0).data[index].x;
           const centerY = chart.getDatasetMeta(0).data[index].y;
-          const x = centerX + Math.cos(angle) * radius;
-          const y = centerY + Math.sin(angle) * radius;
 
-          // Draw pointer line
+          // Calculate points for the pointer
+          const midRadius = (outerRadius + innerRadius) / 2;
+          const xArc = centerX + Math.cos(midAngle) * midRadius;
+          const yArc = centerY + Math.sin(midAngle) * midRadius;
+
+          const xLabel = centerX + Math.cos(midAngle) * (outerRadius + 30);
+          const yLabel = Math.min(centerY + Math.sin(midAngle) * (outerRadius + 30), top - 20);
+
+          // Draw line from arc to label
           ctx.beginPath();
-          ctx.moveTo(x, y);
-          ctx.lineTo(centerX, top - 30); // End point above the chart
+          ctx.moveTo(xArc, yArc);
+          ctx.lineTo(xLabel, yLabel);
           ctx.strokeStyle = colors[index];
           ctx.lineWidth = 2;
           ctx.stroke();
@@ -78,9 +82,10 @@ const CustomDoughnutChart = ({ data, line_load }: any) => {
           // Draw label
           ctx.font = '12px Arial';
           ctx.fillStyle = colors[index];
-          ctx.textAlign = 'center';
+          ctx.textAlign = midAngle < Math.PI / 2 ? 'left' : 'right';
           ctx.textBaseline = 'bottom';
-          ctx.fillText(`${label}: ${value} (${((value / totalValue) * 100).toFixed(1)}%)`, centerX, top - 35);
+          const labelText = `${label}: ${value} (${((value / totalValue) * 100).toFixed(1)}%)`;
+          ctx.fillText(labelText, xLabel, yLabel - 5);
 
           startAngle -= sliceAngle;
         });
