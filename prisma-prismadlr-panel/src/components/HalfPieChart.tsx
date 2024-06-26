@@ -15,6 +15,22 @@ const CustomDoughnutChart = ({ data, line_load }: any) => {
         data: data,
         backgroundColor: colors,
         borderWidth: 0,
+        datalabels: {
+          display: true,
+          align: 'end',
+          anchor: 'end',
+          offset: 10,
+          formatter: (value, ctx) => {
+            return `${value} ${labels[ctx.dataIndex]}`;
+          },
+          font: {
+            size: 12,
+          },
+          line: {
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            borderWidth: 1,
+          },
+        },
       },
     ],
   };
