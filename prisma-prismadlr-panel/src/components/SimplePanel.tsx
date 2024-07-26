@@ -153,7 +153,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
               overflowY: 'scroll',
             }}
           >
-            <Grid numRows={3} itemHeight={255}>
+            <Grid numRows={3} itemHeight={240}>
               {deviceData.map((deviceRow: any, index: number) => {
                 return (
                   <ChartBox
