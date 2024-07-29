@@ -17,6 +17,8 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
     parseFloat(thermal_current_lower).toFixed(3) || 0,
     parseFloat(thermal_current_upper).toFixed(3) || 0,
   ];
+  const currentTime = new Date();
+  const timeIn3Hours = new Date(currentTime.getTime() + 3 * 60 * 60 * 1000);
   return (
     <>
       <div
@@ -62,7 +64,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
                 <span style={{ fontWeight: 600 }}>DV 220</span>kv
               </div>
             </div>
-            <div>11:30 (now)</div>
+            <div> {currentTime.toLocaleTimeString()} (now)</div>
           </div>
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <HalfPieChart data={pieChartData} line_load={line_current} labels={labels} colors={colors} />
@@ -94,7 +96,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
                   650
                   <span style={{ paddingTop: '3px', fontSize: '10px' }}>A/95%</span>
                 </span>
-                <span style={{ paddingTop: '3px' }}>13:30</span>
+                <span style={{ paddingTop: '3px' }}>{timeIn3Hours.toLocaleTimeString()}</span>
               </div>
             </div>
             <ChartIcon />
