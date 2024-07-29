@@ -19,13 +19,27 @@ const SideBar = ({ activeDevice }: any) => {
     solar_radiation_intensity,
     rain_intensity,
     span_number,
+    static_thermal_limit,
+    conductor_average_temperature,
+    conductor_max_allowed_temperature,
   } = activeDevice;
   return (
     <div style={{ padding: '12px' }}>
       <Header title={device_name} />
       <div className="grid-container">
         <div className="grid-item">
-          <InfoCard icon={<ConductorIcon />} title="Conductor" tag="Critical Rating" content={<ConductorInfo />} />
+          <InfoCard
+            icon={<ConductorIcon />}
+            title="Conductor"
+            tag="Critical Rating"
+            content={
+              <ConductorInfo
+                static_thermal_limit={static_thermal_limit}
+                conductor_average_temperature={conductor_average_temperature}
+                conductor_max_allowed_temperature={conductor_max_allowed_temperature}
+              />
+            }
+          />
         </div>
         <div className="grid-item">
           <InfoCard icon={<LineIcon />} title="Line" content={<LineInfo span_number={span_number} />} />
@@ -54,7 +68,11 @@ const SideBar = ({ activeDevice }: any) => {
 
 export default SideBar;
 
-const ConductorInfo: React.FC = () => (
+const ConductorInfo = ({
+  static_thermal_limit,
+  conductor_average_temperature,
+  conductor_max_allowed_temperature,
+}: any) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
     <div className="info-row">
       <div className="info-item">
@@ -64,7 +82,7 @@ const ConductorInfo: React.FC = () => (
       <div className="vertical-bar"></div>
       <div className="info-item">
         <div className="info-title">Fallback rating</div>
-        <div className="info-percentage">103.4%</div>
+        <div className="info-percentage">{static_thermal_limit}%</div>
       </div>
     </div>
     <div className="info-row">
@@ -115,7 +133,7 @@ const ConductorInfo: React.FC = () => (
             Temp
           </span>
         </div>
-        <Gauge value={0} max={30} label="N/A" />
+        <Gauge value={conductor_average_temperature} max={conductor_max_allowed_temperature} label="N/A" />
         <div style={{ width: '100%', textAlign: 'center', fontWeight: 600 }}>Overheat in: N/A</div>
       </div>
     </div>
