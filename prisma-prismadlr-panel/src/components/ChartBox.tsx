@@ -64,7 +64,16 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
                 <span style={{ fontWeight: 600 }}>DV 220</span>kv
               </div>
             </div>
-            <div> {currentTime.toLocaleTimeString()} (now)</div>
+            <div>
+              {' '}
+              {currentTime.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+              })}{' '}
+              (now)
+            </div>
           </div>
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <HalfPieChart data={pieChartData} line_load={line_current} labels={labels} colors={colors} />
@@ -96,7 +105,14 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
                   650
                   <span style={{ paddingTop: '3px', fontSize: '10px' }}>A/95%</span>
                 </span>
-                <span style={{ paddingTop: '3px' }}>{timeIn3Hours.toLocaleTimeString()}</span>
+                <span style={{ paddingTop: '3px' }}>
+                  {timeIn3Hours.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                  })}
+                </span>
               </div>
             </div>
             <ChartIcon />
