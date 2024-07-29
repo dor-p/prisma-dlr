@@ -9,7 +9,7 @@ import FilterSort from 'icons/FilterSort';
 import FilterStatus from './FilterStatus';
 import ChartBox from './ChartBox';
 import SideBar from './SideBar/SideBar';
-import { getDevices } from 'lib/dashboard';
+import { getDevices, getUniqueDevices } from 'lib/dashboard';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -33,6 +33,8 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
   const [loading, setLoading] = useState<boolean>(false);
   const [activeChart, setActiveChart] = useState<number>(0);
   const [deviceData, setDeviceData] = useState<any>([]);
+  const [deviceNamesData, setDeviceNamesData] = useState<any>([]);
+
   // if (data.series.length === 0) {
   //   return <PanelDataErrorView fieldConfig={fieldConfig} panelId={id} data={data} needsStringField />;
   // }
@@ -42,6 +44,9 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
       try {
         const devices = await getDevices();
         setDeviceData(devices);
+
+        const device_names = await getUniqueDevices();
+        setDeviceNamesData(device_names);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -132,7 +137,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
           <MultiSelect
             label="Circuit"
             value={[]}
-            options={['Rating 1', 'Rating 2']}
+            options={deviceNamesData}
             handleChange={function (value: string[]): void {
               throw new Error('Function not implemented.');
             }}

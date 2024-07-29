@@ -6,3 +6,11 @@ export const getDevices = async () => {
   const deviceResults = await runQuery(deviceQuery);
   return deviceResults;
 };
+
+export const getUniqueDevices = async () => {
+  const deviceQuery = `
+    SELECT DISTINCT device_name FROM line_dtr_xcel;
+    `;
+  const deviceResults = await runQuery(deviceQuery);
+  return deviceResults;
+};
