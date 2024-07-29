@@ -46,7 +46,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
         setDeviceData(devices);
 
         const device_names = await getUniqueDevices();
-        setDeviceNamesData(device_names);
+        setDeviceNamesData(device_names?.map((item: any) => item.device_name));
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
