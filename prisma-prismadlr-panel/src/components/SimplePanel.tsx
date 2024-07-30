@@ -180,10 +180,10 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
       )}
       {/* Loading overlay */}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="text-white text-center">
+        <div className="loading-overlay">
+          <div className="loading-content">
             <CustomSpinner />
-            <p className="mt-4">Loading...</p>
+            <p className="mt-4 text-white">Loading...</p>
           </div>
         </div>
       )}

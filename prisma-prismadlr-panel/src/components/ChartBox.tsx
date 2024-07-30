@@ -43,7 +43,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
             justifyContent: 'space-between',
             background: '#222529',
             padding: '10px',
-            height: '183px',
+            height: '149px',
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', fontSize: '12px' }}>
