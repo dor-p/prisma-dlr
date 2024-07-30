@@ -158,7 +158,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
               overflowY: 'scroll',
             }}
           >
-            <Grid numRows={3} itemHeight={240}>
+            <Grid numRows={3} itemHeight={200}>
               {deviceData.map((deviceRow: any, index: number) => {
                 return (
                   <ChartBox
@@ -178,10 +178,26 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
           <SideBar activeDevice={deviceData[activeChart]} />
         </div>
       )}
+      {/* Loading overlay */}
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="text-white text-center">
+            <CustomSpinner />
+            <p className="mt-4">Loading...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
+const CustomSpinner = () => (
+  <div className="spinner">
+    <div className="bounce1"></div>
+    <div className="bounce2"></div>
+    <div className="bounce3"></div>
+  </div>
+);
 const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
   return (
     <div

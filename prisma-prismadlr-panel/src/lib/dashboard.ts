@@ -1,7 +1,7 @@
 import { runQuery } from './lib';
 export const getDevices = async () => {
   const deviceQuery = `
-    SELECT
+    SELECT DISTINCT ON (l.device_name) 
     l.*, 
     c.static_thermal_limit,
     c.conductor_limit_temperature,
@@ -27,7 +27,9 @@ LEFT JOIN
     circuits_attributes_xcel c ON l.device_inst_id = c.device_inst_id
 LEFT JOIN 
     line_dtr_forecast_xcel f ON l.device_inst_id = f.device_inst_id
-LIMIT 30
+ORDER BY 
+    l.device_name, l.valid_for_timestamp DESC
+LIMIT 30;
     `;
   const deviceResults = await runQuery(deviceQuery);
   return deviceResults;
