@@ -68,7 +68,7 @@ const HalfPieChart: React.FC = ({ data, line_load }: any) => {
   ];
 
   return (
-    <div style={{ width: '250px', height: 'auto', backgroundColor: 'transparent' }}>
+    <div style={{ width: '240px', height: 'auto', backgroundColor: 'transparent' }}>
       <Doughnut data={chartData} options={options} plugins={plugins} />
     </div>
   );

@@ -23,7 +23,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
     <>
       <div
         style={{
-          padding: '10px 15px',
+          padding: '5px 7px',
           backgroundColor: '#2b2e34',
           color: '#fff',
           borderRadius: '6px',
@@ -33,9 +33,9 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
         }}
         onClick={onClick}
       >
-        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px', alignItems: 'center' }}>
-          <span style={{ fontSize: '16px', fontWeight: 600 }}>{device_name}</span>
-          <span style={{ borderRadius: '4px', padding: '6px', backgroundColor: '#204762', marginLeft: '20px' }}>N</span>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '5px', alignItems: 'center' }}>
+          <span style={{ fontSize: '12px', fontWeight: 600 }}>{device_name}</span>
+          <span style={{ borderRadius: '4px', padding: '4px', backgroundColor: '#204762', marginLeft: '20px' }}>N</span>
         </div>
         <div
           style={{
