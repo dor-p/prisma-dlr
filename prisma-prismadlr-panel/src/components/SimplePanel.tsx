@@ -153,7 +153,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
               width: '100%',
               height: '100%',
               background: '#1c1f21',
-              margin: '10px',
+              margin: '5px',
               pointerEvents: 'none',
               overflowY: 'scroll',
             }}
@@ -205,7 +205,7 @@ const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
         display: 'grid',
         gridTemplateColumns: `repeat(${2}, 50%)`,
         gridTemplateRows: `repeat(${numRows}, ${itemHeight}px)`,
-        gap: '10px',
+        gap: '7px',
         width: '98%',
         marginBottom: '10px',
         pointerEvents: 'none',
