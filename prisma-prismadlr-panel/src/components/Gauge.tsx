@@ -55,7 +55,8 @@ const Gauge = ({ value, max = 800 }) => {
   return (
     <svg width="200" height="120" viewBox="0 0 200 120">
       <path d={arcPath(0, 180, 70)} fill="#ff6699" stroke="#333" strokeWidth="20" />
-      <path d={arcPath(0, angle, 70)} fill="#ffeb00" stroke="#4caf50" strokeWidth="20" strokeLinecap="round" />
+      <path d={arcPath(0, 70, 20)} fill="#ffeb00" stroke="#333" strokeWidth="20" />
+      <path d={arcPath(0, angle, 70)} fill="#222529" stroke="#4caf50" strokeWidth="20" strokeLinecap="round" />
       {marker(600, '600A', '#e74c3c')}
       {marker(700, '700A', '#3498db', -15, true)}
       {marker(800, '800A', '#e74c3c')}
