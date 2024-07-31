@@ -1,6 +1,7 @@
 import React from 'react';
 import HalfPieChart from './HalfPieChart';
 import ChartIcon from 'icons/ChartIcon';
+import Gauge from './Gauge';
 
 interface ChartBoxProps {
   data: any;
@@ -76,7 +77,8 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
             </div>
           </div>
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <HalfPieChart data={pieChartData} line_load={line_current} labels={labels} colors={colors} />
+            {/* <HalfPieChart data={pieChartData} line_load={line_current} labels={labels} colors={colors} /> */}
+            <Gauge value={150} />
           </div>
           <div
             style={{

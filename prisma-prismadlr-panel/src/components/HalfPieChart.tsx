@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartOptions } from 'cha
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HalfPieChart: React.FC = ({ data, line_load }: any) => {
+const HalfPieChart: React.FC = ({ data, line_load, static_thermal_limit, thermal_current }: any) => {
   const labels = ['Thermal Current', 'Thermal Current Lower Limit', 'Thermal Current Upper Limit'];
   const colors = ['#BB9000', '#FF6666', '#3D4147'];
 
@@ -52,7 +52,7 @@ const HalfPieChart: React.FC = ({ data, line_load }: any) => {
         ctx.textBaseline = 'middle';
 
         const lineLoad = parseFloat(line_load).toFixed(0);
-        const lineLoadText = `${lineLoad}A/${((Number(lineLoad) / 600) * 100).toFixed(0)}%`;
+        const lineLoadText = `${lineLoad}A/100%`;
         const lineLoadTextX = Math.round((width - ctx.measureText(lineLoadText).width) / 2);
         const lineLoadTextY = height / 1.2;
         ctx.fillStyle = '#BB9000';
