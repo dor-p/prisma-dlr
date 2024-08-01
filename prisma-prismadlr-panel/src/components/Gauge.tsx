@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Gauge = ({ line_current, static_thermal_limit, thermal_current, max = 1000 }) => {
-  const percentage = (value / max) * 100;
+  const percentage = (line_current / max) * 100;
   const angle = Math.min(180, (180 * percentage) / 100);
 
   const arcPath = (startAngle, endAngle, radius) => {
