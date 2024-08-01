@@ -19,18 +19,26 @@ const Gauge = ({ value, max = 800 }) => {
     };
   };
 
-  const marker = (value, label, color, yOffset = 0, special = false) => {
+  const marker = (value, label, color, dashed = false, yOffset = 0, special = false) => {
     const markerAngle = Math.min(180, (180 * value) / max);
-    const outerPoint = polarToCartesian(100, 100, 80, markerAngle);
-    const innerPoint = polarToCartesian(100, 100, 60, markerAngle);
+    const outerPoint = polarToCartesian(100, 100, 95, markerAngle);
+    const innerPoint = polarToCartesian(100, 100, 65, markerAngle);
     return (
       <g>
-        <line x1={innerPoint.x} y1={innerPoint.y} x2={outerPoint.x} y2={outerPoint.y} stroke={color} strokeWidth="2" />
+        <line
+          x1={innerPoint.x}
+          y1={innerPoint.y}
+          x2={outerPoint.x}
+          y2={outerPoint.y}
+          stroke={color}
+          strokeWidth="2"
+          strokeDasharray={dashed ? '1,1' : '0,0'} // Add this property to make the line dotted
+        />
         <text
-          x={outerPoint.x + (markerAngle > 90 ? -5 : 5)}
+          x={outerPoint.x + (markerAngle > 90 ? 0 : 5)}
           y={outerPoint.y + yOffset}
           fill={color}
-          fontSize="12"
+          fontSize="10"
           textAnchor={markerAngle > 90 ? 'end' : 'start'}
           alignmentBaseline="middle"
         >
@@ -41,7 +49,7 @@ const Gauge = ({ value, max = 800 }) => {
             x={outerPoint.x + (markerAngle > 90 ? -5 : 5)}
             y={outerPoint.y + yOffset + 15}
             fill={color}
-            fontSize="12"
+            fontSize="10"
             textAnchor={markerAngle > 90 ? 'end' : 'start'}
             alignmentBaseline="middle"
           >
@@ -54,16 +62,18 @@ const Gauge = ({ value, max = 800 }) => {
 
   return (
     <svg width="200" height="120" viewBox="0 0 200 120">
-      <path d={arcPath(0, 180, 70)} fill="#ff6699" stroke="#333" strokeWidth="20" />
-      <path d={arcPath(0, 70, 20)} fill="#ffeb00" stroke="#333" strokeWidth="20" />
-      <path d={arcPath(0, angle, 70)} fill="#222529" stroke="#4caf50" strokeWidth="20" strokeLinecap="round" />
-      {marker(600, '600A', '#e74c3c')}
-      {marker(700, '700A', '#3498db', -15, true)}
-      {marker(800, '800A', '#e74c3c')}
-      <text x="100" y="85" textAnchor="middle" fill="#ecf0f1" fontSize="14">
+      <path d={arcPath(0, 180, 80)} fill="#222529" stroke="#333" strokeWidth="20" />
+
+      {/* Graph bar */}
+      <path d={arcPath(0, 150, 80)} fill="#222529" stroke="#5bd276" strokeWidth="20" />
+
+      {marker(700, '700A', '#3498db', true, -15, true)}
+      {marker(900, '600A', '#e74c3c', false, -25, true)}
+
+      <text x="100" y="78" textAnchor="middle" fill="#ecf0f1" fontSize="11">
         Line load
       </text>
-      <text x="100" y="105" textAnchor="middle" fill="#4caf50" fontSize="24" fontWeight="bold">
+      <text x="100" y="96" textAnchor="middle" fill="#4caf50" fontSize="18" fontWeight="bold">
         {value}A/{percentage.toFixed(0)}%
       </text>
     </svg>
