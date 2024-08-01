@@ -12,7 +12,14 @@ interface ChartBoxProps {
 const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
   const labels = ['Line load', '600A', '700A DLR'];
   const colors = ['#D4AF37', '#FF6347', '#1E90FF'];
-  const { device_name, thermal_current, thermal_current_lower, thermal_current_upper, line_current } = data;
+  const {
+    device_name,
+    thermal_current,
+    line_current,
+    static_thermal_limit,
+    thermal_current_lower,
+    thermal_current_upper,
+  } = data;
   const pieChartData = [
     parseFloat(thermal_current).toFixed(3) || 0,
     parseFloat(thermal_current_lower).toFixed(3) || 0,
@@ -20,6 +27,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
   ];
   const currentTime = new Date();
   const timeIn3Hours = new Date(currentTime.getTime() + 3 * 60 * 60 * 1000);
+
   return (
     <>
       <div
@@ -78,7 +86,11 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
           </div>
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             {/* <HalfPieChart data={pieChartData} line_load={line_current} labels={labels} colors={colors} /> */}
-            <Gauge value={150} />
+            <Gauge
+              line_current={line_current}
+              static_thermal_limit={static_thermal_limit}
+              thermal_current={thermal_current}
+            />
           </div>
           <div
             style={{
