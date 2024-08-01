@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Gauge = ({ value, max = 800 }) => {
+const Gauge = ({ static_thermal_limit, thermal_current, max = 800 }) => {
   const percentage = (value / max) * 100;
   const angle = Math.min(180, (180 * percentage) / 100);
 
@@ -61,19 +61,19 @@ const Gauge = ({ value, max = 800 }) => {
   };
 
   return (
-    <svg width="200" height="120" viewBox="0 0 200 120">
+    <svg width="210" height="130" viewBox="0 0 210 130">
       <path d={arcPath(0, 180, 80)} fill="#222529" stroke="#333" strokeWidth="20" />
 
       {/* Graph bar */}
-      <path d={arcPath(0, 150, 80)} fill="#222529" stroke="#5bd276" strokeWidth="20" />
+      <path d={arcPath(0, angle, 80)} fill="#222529" stroke="#5bd276" strokeWidth="20" strokeLinecap="round" />
 
       {marker(700, '700A', '#3498db', true, -15, true)}
-      {marker(900, '600A', '#e74c3c', false, -25, true)}
+      {marker(600, '600A', '#e74c3c', false, -25, true)}
 
-      <text x="100" y="78" textAnchor="middle" fill="#ecf0f1" fontSize="11">
+      <text x="105" y="83" textAnchor="middle" fill="#ecf0f1" fontSize="11">
         Line load
       </text>
-      <text x="100" y="96" textAnchor="middle" fill="#4caf50" fontSize="18" fontWeight="bold">
+      <text x="105" y="101" textAnchor="middle" fill="#4caf50" fontSize="18" fontWeight="bold">
         {value}A/{percentage.toFixed(0)}%
       </text>
     </svg>
