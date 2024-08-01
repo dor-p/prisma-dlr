@@ -75,22 +75,16 @@ const Gauge = ({ line_current, static_thermal_limit, thermal_current, max = 1000
       <path d={arcPath(0, 180, 80)} fill="#222529" stroke="#333" strokeWidth="20" />
 
       {/* Graph bar */}
-      <path
-        d={arcPath(0, (line_current / max) * 180, 80)}
-        fill="#222529"
-        stroke={graphColor}
-        strokeWidth="20"
-        strokeLinecap="round"
-      />
+      <path d={arcPath(0, (line_current / max) * 180, 80)} fill="#222529" stroke={graphColor} strokeWidth="20" />
 
-      {marker((static_thermal_limit / max) * 180, `${static_thermal_limit}A`, '#3498db', true, -15, true)}
-      {marker((thermal_current / max) * 180, `${thermal_current}A`, '#e74c3c', false, -25, true)}
+      {marker((static_thermal_limit / max) * 180, `${static_thermal_limit.toFixed(0)}A`, '#3498db', true, -15, true)}
+      {marker((thermal_current / max) * 180, `${thermal_current.toFixed(0)}A`, '#e74c3c', false, -25, true)}
 
-      <text x="105" y="83" textAnchor="middle" fill="#ecf0f1" fontSize="11">
+      <text x="105" y="80" textAnchor="middle" fill="#ecf0f1" fontSize="13">
         Line load
       </text>
       <text x="105" y="101" textAnchor="middle" fill="#4caf50" fontSize="18" fontWeight="bold">
-        {line_current}A/{percentage.toFixed(0)}%
+        {line_current.toFixed(0)}A/{percentage.toFixed(0)}%
       </text>
     </svg>
   );
