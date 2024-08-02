@@ -19,14 +19,19 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
     static_thermal_limit,
     thermal_current_lower,
     thermal_current_upper,
+    valid_for_timestamp,
+    forecast_valid_for_timestamp,
+    forecast_thermal_current,
   } = data;
   const pieChartData = [
     parseFloat(thermal_current).toFixed(3) || 0,
     parseFloat(thermal_current_lower).toFixed(3) || 0,
     parseFloat(thermal_current_upper).toFixed(3) || 0,
   ];
-  const currentTime = new Date();
-  const timeIn3Hours = new Date(currentTime.getTime() + 3 * 60 * 60 * 1000);
+
+  const currentTime = new Date(valid_for_timestamp);
+  const forecastTime = new Date(forecast_valid_for_timestamp);
+  const timeIn3Hours = new Date(forecastTime.getTime() + 3 * 60 * 60 * 1000);
 
   return (
     <>
@@ -116,7 +121,7 @@ const ChartBox: React.FC<any> = ({ data, active, onClick }: ChartBoxProps) => {
                 }}
               >
                 <span style={{ fontSize: '13px' }}>
-                  650
+                  {forecast_thermal_current.toFixed(0)}
                   <span style={{ paddingTop: '3px', fontSize: '10px' }}>A/95%</span>
                 </span>
                 <span style={{ paddingTop: '3px' }}>

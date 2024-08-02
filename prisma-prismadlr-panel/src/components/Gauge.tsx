@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Gauge = ({ line_current, static_thermal_limit, thermal_current, max = 1000 }) => {
+const Gauge = ({ line_current, static_thermal_limit, thermal_current, max = 1500 }) => {
   const percentage = (line_current / max) * 100;
   const angle = Math.min(180, (180 * percentage) / 100);
 
@@ -77,8 +77,8 @@ const Gauge = ({ line_current, static_thermal_limit, thermal_current, max = 1000
       {/* Graph bar */}
       <path d={arcPath(0, (line_current / max) * 180, 80)} fill="#222529" stroke={graphColor} strokeWidth="20" />
 
-      {marker((static_thermal_limit / max) * 180, `${static_thermal_limit.toFixed(0)}A`, '#3498db', true, -15, true)}
-      {marker((thermal_current / max) * 180, `${thermal_current.toFixed(0)}A`, '#e74c3c', false, -25, true)}
+      {marker(static_thermal_limit, `${static_thermal_limit.toFixed(0)}A`, '#3498db', true, -15, true)}
+      {marker(thermal_current, `${thermal_current.toFixed(0)}A`, '#e74c3c', false, -25, true)}
 
       <text x="105" y="80" textAnchor="middle" fill="#ecf0f1" fontSize="13">
         Line load
