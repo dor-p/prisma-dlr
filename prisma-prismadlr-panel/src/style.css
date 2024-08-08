@@ -39,19 +39,19 @@
   width: 100%;
 }
 .info-row .info-title {
-  font-size: 15px;
+  font-size: 13px;
   color: #ffffff;
 }
 .info-row .info-subtitle {
-  font-size: 20px;
+  font-size: 18px;
   color: #ffffff;
   font-weight: 600;
 }
 .info-row .info-percentage {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
   color: #f45f4f;
-  height: 34px;
+  height: 30px;
 }
 .info-row:last-child {
   border-bottom: none;
@@ -67,10 +67,10 @@
 
 .sidebar-header-info {
   display: flex;
-  font-size: 12px;
+  font-size: 10px;
   align-items: center;
-  gap: 8px;
-  margin-right: 10px;
+  gap: 7px;
+  margin-right: 8px;
 }
 
 .dlr-badge {
@@ -85,12 +85,12 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 .grid-item {
-  padding: 16px;
-  border-radius: 13px;
+  padding: 12px;
+  border-radius: 11px;
   background-color: #323335;
 }
 

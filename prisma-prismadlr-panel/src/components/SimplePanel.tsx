@@ -76,7 +76,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
       {/* Container */}
       <div
         style={{
-          width: '78%',
+          width: '81%',
           background: 'black',
           height: '100%',
           borderRadius: '10px',
@@ -174,7 +174,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
         </div>
       </div>
       {deviceData[activeChart] && (
-        <div style={{ width: '22%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
+        <div style={{ width: '19%', background: 'black', height: '100%', borderRadius: '10px', overflowY: 'scroll' }}>
           <SideBar activeDevice={deviceData[activeChart]} />
         </div>
       )}
