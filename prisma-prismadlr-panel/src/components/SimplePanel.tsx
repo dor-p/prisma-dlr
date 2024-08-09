@@ -144,7 +144,16 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
           />
           <FilterSort />
         </div>
-        <div style={{ height: '100%', background: '#1c1f21', padding: '10px', overflowY: 'hidden' }}>
+        <div
+          style={{
+            height: '100%',
+            background: '#1c1f21',
+            padding: '10px',
+            overflowY: 'hidden',
+            overflowX: 'hidden',
+            width: '100%',
+          }}
+        >
           <div style={{ background: '#18191b', padding: '0px 10px' }}>
             <FilterStatus />
           </div>
@@ -206,7 +215,7 @@ const Grid: React.FC<any> = ({ numRows, children, itemHeight }) => {
         gridTemplateColumns: `repeat(${2}, 50%)`,
         gridTemplateRows: `repeat(${numRows}, ${itemHeight}px)`,
         gap: '7px',
-        width: '98%',
+        width: '99%',
         marginBottom: '10px',
         pointerEvents: 'none',
         paddingBottom: '45px',
