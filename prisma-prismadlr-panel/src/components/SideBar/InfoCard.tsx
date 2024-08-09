@@ -17,6 +17,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, icon, content, tag }) => (
         width: '100%',
         alignItems: 'center',
         backgroundColor: '#323335',
+        marginBottom: '6px',
       }}
     >
       <h6
@@ -30,7 +31,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, icon, content, tag }) => (
           marginBottom: '0px',
         }}
       >
-        <span style={{ height: '30px' }}>{icon}</span>
+        {icon}
         {title}
       </h6>
       {tag && <Tag label={tag} backgroundColor="#F45F4F" />}

@@ -86,7 +86,7 @@ const ConductorInfo = ({
       </div>
     </div>
     <div className="info-row" style={{ height: '70px' }}>
-      <div className="info-item">
+      <div className="info-item" style={{ paddingTop: '28px' }}>
         <div className="info-title">Cumulative gain</div>
         <div
           className="info-subtitle"
@@ -95,25 +95,25 @@ const ConductorInfo = ({
           <div
             style={{ display: 'flex', flexDirection: 'column', color: '#9D9898', width: '100px', paddingLeft: '10px' }}
           >
-            <span style={{ fontSize: '33px', height: '36px' }}>93</span>
-            <span style={{ fontSize: '16px', textAlign: 'left', fontWeight: 300 }}>Days</span>
+            <span style={{ fontSize: '27px', height: '28px' }}>93</span>
+            <span style={{ fontSize: '13px', textAlign: 'left', fontWeight: 600 }}>Days</span>
           </div>
           <div
             style={{ display: 'flex', flexDirection: 'column', color: '#27D76A', width: '100px', paddingLeft: '10px' }}
           >
-            <span style={{ fontSize: '33px', height: '36px' }}>
+            <span style={{ fontSize: '27px', height: '28px' }}>
               21.6
               <span style={{ fontSize: '15px' }}>%</span>
             </span>
-            <span style={{ fontSize: '16px', textAlign: 'left', fontWeight: 300 }}>Gain</span>
+            <span style={{ fontSize: '13px', textAlign: 'left', fontWeight: 600 }}>Gain</span>
           </div>
           <div
             style={{ display: 'flex', flexDirection: 'column', color: '#FFFFFF', width: '100px', paddingLeft: '10px' }}
           >
-            <span style={{ fontSize: '33px', height: '36px' }}>
+            <span style={{ fontSize: '27px', height: '28px' }}>
               0.6<span style={{ fontSize: '15px' }}>%</span>
             </span>
-            <span style={{ fontSize: '16px', textAlign: 'left', fontWeight: 300 }}>Risk</span>
+            <span style={{ fontSize: '13px', textAlign: 'left', fontWeight: 600 }}>Risk</span>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ const ConductorInfo = ({
       className="info-row"
       style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
     >
-      <div className="info-item">
+      <div className="info-item" style={{ paddingTop: '7px' }}>
         <div
           className="info-title"
           style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%' }}
@@ -134,7 +134,27 @@ const ConductorInfo = ({
           </span>
         </div>
         <Gauge value={conductor_average_temperature} max={conductor_max_allowed_temperature} label="N/A" />
-        <div style={{ width: '100%', textAlign: 'center', fontWeight: 600 }}>Overheat in: N/A</div>
+        <div
+          style={{
+            width: '100%',
+            textAlign: 'center',
+            fontWeight: 600,
+            marginTop: '-27px',
+            color: '#ffffff',
+            fontSize: '10px',
+          }}
+        >
+          Overheat in:
+          <span
+            style={{
+              fontWeight: 600,
+              color: '#ffffff',
+              fontSize: '14px',
+            }}
+          >
+            N/A
+          </span>
+        </div>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ConductorIcon = () => {
   return (
-    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="42" height="32" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <mask
         id="mask0_1_397"
         style={{ maskType: 'alpha' }}
