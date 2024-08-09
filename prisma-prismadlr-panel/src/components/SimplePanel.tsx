@@ -69,7 +69,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
         styles.wrapper,
         css`
           width: ${width}px;
-          height: ${height}px;
+          height: 101%;
         `
       )}
     >

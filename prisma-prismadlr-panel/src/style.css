@@ -150,3 +150,7 @@
     transform: scale(1);
   }
 }
+
+.panel-container {
+  height: 110% !important;
+}
