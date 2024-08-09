@@ -74,8 +74,8 @@ const ConductorInfo = ({
   conductor_max_allowed_temperature,
 }: any) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
-    <div className="info-row">
-      <div className="info-item">
+    <div className="info-row" style={{ height: '60px' }}>
+      <div className="info-item" style={{ justifyContent: 'center' }}>
         <div className="info-title">Type</div>
         <div className="info-subtitle">Copper</div>
       </div>
@@ -85,7 +85,7 @@ const ConductorInfo = ({
         <div className="info-percentage">{static_thermal_limit}%</div>
       </div>
     </div>
-    <div className="info-row">
+    <div className="info-row" style={{ height: '70px' }}>
       <div className="info-item">
         <div className="info-title">Cumulative gain</div>
         <div

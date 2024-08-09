@@ -15,6 +15,7 @@ const Tag: React.FC<TagProps> = ({ label, backgroundColor }) => {
     display: 'inline-block',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    fontSize: '10px',
   };
 
   return (
